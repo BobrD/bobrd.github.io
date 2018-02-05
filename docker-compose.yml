@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  web:
+    build: .docker/node
+    command: tail -f /dev/null
+    volumes:
+      - ./:/var/www/xo.dev
+    ports:
+      - "3030:3030"
