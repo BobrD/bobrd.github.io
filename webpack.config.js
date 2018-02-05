@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -12,7 +13,7 @@ module.exports = {
     context: __dirname,
 
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'docs'),
         filename: "bundle.js",
         publicPath: ""
     },
@@ -65,3 +66,9 @@ module.exports = {
         contentBase: './dist',
     }
 };
+
+if (env === 'production') {
+    module.exports.plugins.push(
+        new UglifyJSPlugin()
+    )
+}
